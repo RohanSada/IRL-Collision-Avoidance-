@@ -5,9 +5,15 @@ import time
 import numpy as np
 import random 
 import keyboard
+import os
 from SimClass import *
 
-total_runs = 2
+total_runs = 10
+
+folder_path = './Data/'
+
+if not os.path.exists(folder_path):
+    os.makedirs(folder_path)
 
 goal = Goal(700, 500, 20)
 
@@ -94,7 +100,7 @@ for i in range(total_runs):
     # Save Demonstration Data to CSV (Optional)
     # -------------------------------
     csv_name = 'data_'+str(i)+'.csv'
-    with open("./Data/"+str(csv_name), "w", newline="") as csvfile:
+    with open(folder_path+str(csv_name), "w", newline="") as csvfile:
         fieldnames = ["time", "x", "y", "theta", "v", "delta", "lidar", "GoalDistance"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
